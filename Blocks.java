@@ -8,12 +8,15 @@ public abstract class Blocks {
     protected int midY;
     protected int blockWidth;
     //false = left & right true = up & down
-    protected boolean direction = false;
+    protected char direction;
+    protected final int GAME_HEIGHT;
 
-    public Blocks(int width, int pos) {
+    public Blocks(int width, int pos, char dir, int height) {
         blockWidth = width;
         midX = pos;
         blocks = new ArrayList<>();
+        direction = dir;
+        GAME_HEIGHT = height;
     }
 
     abstract protected void generateBlock();
@@ -38,9 +41,27 @@ public abstract class Blocks {
         }
     }
 
+    public void moveDown() {
+        for(Block block : blocks) {
+            block.setY(block.getY() + blockWidth);
+        }
+    }
+
     public void draw(Graphics g) {
         for(int i = 0; i <  blocks.size(); i++ ) {
             blocks.get(i).draw(g);
         }
     }
+
+    public void drawNext(Graphics g, int x, int y) {
+        for(int i = 0; i < blocks.size(); i++) {
+            blocks.get(i).drawNext(g, x, y);
+        }
+    }
+
+    public void setMidX(int mid) {
+        midX = mid;
+    }
+
+    abstract void setMidY(int mid);
 }
