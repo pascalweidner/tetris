@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class TurquoiseBlock extends Blocks{
-    public TurquoiseBlock(int width, int pos) {
-        super(width, pos);
+    public TurquoiseBlock(int width, int pos, int height) {
+        super(width, pos, 'p', height);
         midY = 0;
         generateBlock();
     }
@@ -18,5 +18,10 @@ public class TurquoiseBlock extends Blocks{
     @Override
     protected void turn() {
 
+    }
+
+    @Override
+    void setMidY(int mid) {
+        midY = mid;
     }
 }
