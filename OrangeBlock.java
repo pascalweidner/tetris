@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class OrangeBlock extends Blocks{
 
-    public OrangeBlock(int width, int pos) {
-        super(width, pos);
+    public OrangeBlock(int width, int pos, int height) {
+        super(width, pos, 'l', height);
         super.midY = super.blockWidth;
         generateBlock();
     }
@@ -19,14 +19,20 @@ public class OrangeBlock extends Blocks{
 
     @Override
     protected void turn() {
-        if(!direction) {
+        if(direction == 'r' ||direction == 'l') {
             blocks.get(0).setX(blocks.get(0).getX() + 2 * blockWidth);
             blocks.get(1).setY(blocks.get(1).getY() + 2 * blockWidth);
+            super.direction = 'u';
         }
-        else {
+        else if(direction == 'u' || direction == 'd'){
             blocks.get(0).setX(blocks.get(0).getX() - 2 * blockWidth);
-            blocks.get(1).setX(blocks.get(1).getX() - blockWidth);
-            blocks.get(1).setY(blocks.get(1).getY() - 2* blockWidth);
+            blocks.get(1).setY(blocks.get(1).getY() - 2 * blockWidth);
+            super.direction = 'r';
         }
+    }
+
+    @Override
+    void setMidY(int mid) {
+        midY = mid;
     }
 }
