@@ -18,6 +18,11 @@ public class Block {
         g.fillRect(x, y, width, width);
     }
 
+    public void drawNext(Graphics g, int xNext, int yNext) {
+        g.setColor(color);
+        g.fillRect(x + xNext, y + yNext, width, width);
+    }
+
     public int getWidth() {
         return width;
     }
